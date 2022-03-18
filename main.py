@@ -29,8 +29,10 @@ def quotes(message):
 	data=requests.get('https://officeapi.dev/api/characters/random')
 	ot=data.json()
 	o=ot.get('data')
-
-	CharacterData=str(o.get('firstname'))+" "+str(o.get('lastname'))
+	if(str(o.get('lastname'))==null)
+		CharacterData=str(o.get('firstname'))
+	else
+		CharacterData=str(o.get('firstname'))+" "+str(o.get('lastname'))
 	bot.send_message(message.chat.id, CharacterData)
 
 
