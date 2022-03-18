@@ -50,9 +50,27 @@ def quotes(message):
 	data=requests.get('https://officeapi.dev/api/episodes/random')
 	ot=data.json()
 	o=ot.get('data')
-
 	episodeData="Episode - "+ str(o.get('title'))+ os.linesep + os.linesep + "Description - "+ str(o.get('description')) + os.linesep + os.linesep +"Air Date - "+ str(o.get('airDate'))
 	bot.send_message(message.chat.id, episodeData)
+
+
+@bot.message_handler(commands=['crew'])
+def quotes(message):
+	data=requests.get('https://officeapi.dev/api/crew/random')
+	ot=data.json()
+	o=ot.get('data')
+	crew=str(o.get('name'))+ " — " + str(o.get('role')) 
+	bot.send_message(message.chat.id, crew)
+
+@bot.message_handler(commands=['allcrew'])
+def quotes(message):
+	data=requests.get('https://officeapi.dev/api/crew')
+	ot=data.json()
+	o=ot.get('data')
+	allcrew=''''''
+	for i in o:
+		allcrew+=i.get('name')+" — "+i.get('role')+'\n'
+		bot.send_message(message.chat.id, allcrew)
 
 @bot.message_handler(commands=['help'])
 def quotes(message):
