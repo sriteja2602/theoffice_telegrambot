@@ -11,7 +11,16 @@ bot = telebot.TeleBot(API_KEY)
 
 @bot.message_handler(commands=['start'])
 def send_welcome(message):
-	bot.reply_to(message, "Howdy, how are you doing?")
+	help='''
+	You can control me by sending these commands:
+
+	/quotes - displays a random quote from any character
+	/characters - displays a random character
+	/episodes - shows a random episode details
+	/help - see all available commands
+	'''
+	bot.send_message(message.chat.id, "What's up my brotha?")
+	bot.send_message(message.chat.id, help)
 	
 @bot.message_handler(commands=['quotes'])
 def quotes(message):
