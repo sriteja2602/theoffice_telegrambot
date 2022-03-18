@@ -1,4 +1,5 @@
 import os
+from xml.dom.minidom import CharacterData
 import telebot
 import requests
 from dotenv import load_dotenv
@@ -9,7 +10,7 @@ API_KEY = os.getenv("API_KEY")
 
 bot = telebot.TeleBot(API_KEY)
 
-@bot.message_handler(commands=['start', 'help'])
+@bot.message_handler(commands=['start'])
 def send_welcome(message):
 	bot.reply_to(message, "Howdy, how are you doing?")
 	
@@ -22,5 +23,25 @@ def quotes(message):
 
 	quote=str(o['content'])+os.linesep+os.linesep+"— "+str(char.get('firstname'))+" "+str(char.get('lastname'))
 	bot.send_message(message.chat.id, quote)
+
+
+@bot.message_handler(commands=['characters'])
+def quotes(message):
+	data=requests.get('https://officeapi.dev/api/characters/random')
+	ot=data.json()
+	o=ot.get('data')
+
+	CharacterData=str(o.get('firstname'))+" "+str(o.get('lastname'))
+	bot.send_message(message.chat.id, CharacterData)
+
+
+@bot.message_handler(commands=['episodes'])
+def quotes(message):
+	data=requests.get('https://officeapi.dev/api/episodes/random')
+	ot=data.json()
+	o=ot.get('data')
+
+	episodeData=str(o.get('title'))+ os.linesep + os.linesep +str(o.get('description')) + os.linesep + os.linesep +str(o.get('airDate'))
+	bot.send_message(message.chat.id, CharacterData)
 
 bot.infinity_polling()
