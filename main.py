@@ -29,7 +29,7 @@ def quotes(message):
 	data=requests.get('https://officeapi.dev/api/characters/random')
 	ot=data.json()
 	o=ot.get('data')
-	if(str(o.get('lastname'))==null):
+	if(str(o.get('lastname'))=='null'):
 		CharacterData=str(o.get('firstname'))
 	else:
 		CharacterData=str(o.get('firstname'))+" "+str(o.get('lastname'))
@@ -45,4 +45,16 @@ def quotes(message):
 	episodeData="Episode - "+ str(o.get('title'))+ os.linesep + os.linesep + "Description - "+ str(o.get('description')) + os.linesep + os.linesep +"Air Date - "+ str(o.get('airDate'))
 	bot.send_message(message.chat.id, episodeData)
 
+@bot.message_handler(commands=['help'])
+def quotes(message):
+	help='''
+	You can control me by sending these commands:
+
+	/quotes - displays a random quote from any character
+	/characters - displays a random character
+	/episodes - shows a random episode details
+	/help - see all available commands
+	'''
+
+	bot.send_message(message.chat.id, help)
 bot.infinity_polling()
