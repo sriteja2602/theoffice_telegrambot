@@ -40,7 +40,7 @@ def quotes(message):
 	ot=data.json()
 	o=ot.get('data')
 
-	episodeData=str(o.get('title'))+ os.linesep + os.linesep +str(o.get('description')) + os.linesep + os.linesep +str(o.get('airDate'))
+	episodeData="Episode - "+ str(o.get('title'))+ os.linesep + os.linesep + "Description - "+ str(o.get('description')) + os.linesep + os.linesep +"Air Date - "+ str(o.get('airDate'))
 	bot.send_message(message.chat.id, episodeData)
 
 bot.infinity_polling()
