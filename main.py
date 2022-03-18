@@ -1,5 +1,4 @@
 import os
-from xml.dom.minidom import CharacterData
 import telebot
 import requests
 from dotenv import load_dotenv
