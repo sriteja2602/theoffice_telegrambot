@@ -70,7 +70,7 @@ def quotes(message):
 	allcrew=''''''
 	for i in o:
 		allcrew+=i.get('name')+" — "+i.get('role')+'\n'
-		bot.send_message(message.chat.id, allcrew)
+	bot.send_message(message.chat.id, allcrew)
 
 @bot.message_handler(commands=['help'])
 def quotes(message):
