@@ -1,8 +1,6 @@
 import os
 import telebot
 import requests
-from datetime import datetime
-from pytz import timezone
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -77,20 +75,6 @@ def allcrew(message):
 	for i in o:
 		allcrew+=i.get('name')+" — "+i.get('role')+'\n'
 	bot.send_message(message.chat.id, allcrew)
-
-
-# @bot.message_handler(commands=['rquote'])
-# def rquote(message):
-# 	now_utc = datetime.now(timezone('UTC'))
-# 	now_asia = now_utc.astimezone(timezone('Asia/Kolkata')).minute
-# 	if(1):
-# 		if(now_asia%20==0):
-# 			data=requests.get('https://officeapi.dev/api/quotes/random')
-# 			ot=data.json()
-# 			o=ot.get('data')
-# 			char=o['character']
-# 			rquote=str(o['content'])+os.linesep+os.linesep+"— "+str(char.get('firstname'))+" "+str(char.get('lastname'))
-# 			bot.send_message(message.chat.id, rquote)
 	
 
 @bot.message_handler(commands=['help'])
