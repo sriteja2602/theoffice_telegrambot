@@ -2,7 +2,7 @@ import os
 import telebot
 import requests
 from dotenv import load_dotenv
-
+import random
 load_dotenv()
 
 API_KEY = os.getenv("API_KEY")
@@ -22,7 +22,8 @@ def start(message):
 	/allcrew - get a list of all crew members
 	/help - see all available commands
 	'''
-	bot.send_message(message.chat.id, "What's up my brotha?")
+	greet=["What's up my brotha?", "Hey, What up, Cynthia?"]
+	bot.send_message(message.chat.id, random.choice(greet))
 	bot.send_message(message.chat.id, help)
 	
 
