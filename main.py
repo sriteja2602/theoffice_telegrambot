@@ -88,4 +88,4 @@ def help(message):
 	'''
 	bot.send_message(message.chat.id, help)
 
-bot.infinity_polling()
+
