@@ -87,3 +87,5 @@ def help(message):
 	/help - see all available commands
 	'''
 	bot.send_message(message.chat.id, help)
+
+bot.infinity_polling()
